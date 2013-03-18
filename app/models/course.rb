@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :coursedescription, :courseimage, :coursename, :coursetutor, :topics
+  attr_accessible :coursedescription, :courseimage, :coursename, :coursetutor, :topics,:category_id
   belongs_to :user
   belongs_to :category
    letsrate_rateable "quality"

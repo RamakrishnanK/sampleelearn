@@ -4,4 +4,5 @@ class Category < ActiveRecord::Base
   has_many :courses, dependent: :destroy
   validates :user_id, presence: true
   validates  :category_name, presence: true
+  
 end

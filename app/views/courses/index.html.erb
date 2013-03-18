@@ -1,6 +1,8 @@
 <% @course.each do |course| %>
+<br/><%= link_to "Edit", edit_course_path(course) %>
+<%= course.category_id %>
 <%= course.coursename %>
 <%= course.coursetutor %>
 <%= course.coursedescription %>
-<%= course.topics %>
+<%= course.topics %><br/>
 <% end %>

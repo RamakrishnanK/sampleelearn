@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   end
   def create
   	@category=Category.find(params[:id])
-  	@course = @category.current_user.courses.build(params[:course])
+  	@course = @category.courses.build(params[:course])
     @course.user_id = current_user.id
     #@course=Course.new(params[:course])
 
@@ -25,7 +25,12 @@ class CoursesController < ApplicationController
   	@course=Course.find(params[:id])
   end
   def update
-  	@course=Course.find(params[:id])
+    @course=Course.find(params[:id])
+    #@category=Category.find(params[:id])
+    #@course = @category.courses.build(params[:course])
+    #@category=(params[:id])
+  	#@course=Course.find(params[:id])
+    #@category=@course.Course.find(params[:Category_id])
   	if @course.update_attributes(params[:course])
   		flash[:success]="Updated Course details Successfully"
   		redirect_to @course
