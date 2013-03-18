@@ -1,0 +1,2 @@
+<% categories_array = Category.all.map { |category| [category.category_name, category.id] } %>
+<%= select_tag(:category_name,options_for_select(categories_array))%>

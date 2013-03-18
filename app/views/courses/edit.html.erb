@@ -1,0 +1,18 @@
+<h1>Course Update</h1>
+
+<%= form_for(@course) do |f| %>
+<%= render "shared/errormsg", object: f.object %>
+<%= f.label :coursename %>
+<%= f.text_field :coursename %><br/>
+<%= f.label :coursetutor %>
+<%= f.text_field :coursetutor %><br/>
+<%= f.label :coursedescription %>
+<%= f.text_area :coursedescription %><br/>
+<%= f.label :courseimage %>
+<%= f.file_field :courseimage %><br/>
+<%= f.label :topics %>
+<%= f.text_field :topics %><br/>
+<%= f.submit "Course Update" %>
+<% end %>
+
+

@@ -1,0 +1,6 @@
+<% if @course.errors.any? %>
+The form contains <%= pluralize(@course.errors.count,"error")%><br/>
+<% @course.errors.full_messages.each do|msg| %>
+	<%= msg %><br/>
+	<% end %>
+	<% end %>

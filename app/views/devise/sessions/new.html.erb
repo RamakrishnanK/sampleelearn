@@ -1,0 +1,22 @@
+<h2>Sign in</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in" %></div>
+<% end %>
+
+
+<%= render "devise/shared/links" %>
+&nbsp;<%= link_to image_tag("facebook.jpg", alt: "",width: "40px",height: "30px"), '/auth/facebook/' %> 
+        &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp; <%= link_to image_tag("linkedin.jpg", alt: "", width: "40px",height: "30px"), '/auth/linkedin/' %>
+        &nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;<%= link_to image_tag("gmail.jpg", alt: "",width: "40px",height: "30px"), '/auth/google_oauth2/' %> <br>
+        Facebook  &nbsp; Linkedin&nbsp;&nbsp; &nbsp;Google  
