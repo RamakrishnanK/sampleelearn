@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sampleelearn</title>
+  <title>E_Learn</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if signed_in? %>
+<div class="container">
+<%= render 'layouts/header' %>
+<%= render 'layouts/validation_messages' %>
 
-	<%= link_to "Category", categories_path %>
-	<%= link_to "Course", courses_path %>
-	<%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-	<%= link_to "Profie Update", edit_user_registration_path(current_user) %>
-	<% else %>
-	<%= link_to "Sign in", new_user_session_path %>
+ <%= yield %>
 
-	
-	<% end %>
- <% flash.each do |key, value| %>
-   <%= value %>
-    <% end %>
-    <%= yield %>
+<%= render 'layouts/footer' %>
+
 <%= debug(params) %>
+</div>
 </body>
 </html>

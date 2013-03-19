@@ -7,7 +7,11 @@ Sampleelearn::Application.routes.draw do
 
   #resources :courses
  root :to => 'screens#home'
-resources :courses
+resources :courses do
+   collection do
+    get 'search'
+  end
+end
   devise_for :users
   resources :users
 match '/rate' => 'rater#create', :as => 'rate'
