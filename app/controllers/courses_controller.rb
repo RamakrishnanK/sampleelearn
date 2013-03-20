@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
- before_filter :authenticate_user!, only: [:create, :edit,:update,:delete]
+ before_filter :custom_method, :only => [:new, :edit, :create, :destroy]
+
+
  def new
    @course =Course.new
    @category=Category.all
@@ -59,4 +61,21 @@ def update
         # @course=Course.all
        #end
      end
+     def destroy
+      @course = Course.find(params[:id])
+      @course.destroy
+      flash[:success] = "Successfully destroyed course."
+      redirect_to courses_url
+    end
+     private
+def custom_method
+  authenticate_user!
+
+  if current_user.admin
+     return
+  else
+     redirect_to root_url # or whatever
+  end
+end
    end
+

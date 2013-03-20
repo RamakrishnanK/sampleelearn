@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :edit,:update,:delete]
+  before_filter :custom_method, :only => [:new, :edit, :create, :destroy]
   def new
   	@category=Category.new
   end
@@ -31,4 +31,13 @@ class CategoriesController < ApplicationController
    def index
    	@category=Category.all
    end
+   def custom_method
+  authenticate_user!
+
+  if current_user.admin
+     return
+  else
+     redirect_to root_url # or whatever
+  end
+end
 end
