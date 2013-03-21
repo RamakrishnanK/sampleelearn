@@ -13,7 +13,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem "letsrate"
-
+gem 'acts_as_commentable', '3.0.1'
 gem 'omniauth-google-oauth2'
 
 gem 'oauth2'
