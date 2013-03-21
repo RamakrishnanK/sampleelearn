@@ -6,7 +6,7 @@ Sampleelearn::Application.routes.draw do
  resources :categories
 
  
-
+resources :comments
   #resources :courses
  root :to => 'screens#home'
 resources :courses do

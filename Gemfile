@@ -17,6 +17,9 @@ gem 'acts_as_commentable', '3.0.1'
 gem 'omniauth-google-oauth2'
 
 gem 'oauth2'
+gem 'letsrate'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 
 # Gems used only for assets and not required

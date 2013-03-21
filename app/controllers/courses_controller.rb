@@ -22,6 +22,10 @@ class CoursesController < ApplicationController
 end
 def show
  @course=Course.find(params[:id])
+ @countCommentsPerPage = 5
+    @comments = @course.comments.paginate(page: params[:page], per_page: 5)
+    @count = @course.comments.count
+    @course = Course.find(params[:id])
 end
 def edit
  @course=Course.find(params[:id])

@@ -1,5 +1,9 @@
+<div class="row">
+<div class="span6 offset3">
 <% @user.each do |user| %>
 <%= link_to "Edit",edit_user_path(user) %>
 <%= user.name %>
-<%= user.email %>
+<%= user.email %><br/>
 <% end %>
+</div>
+</div>

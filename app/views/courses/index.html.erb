@@ -1,8 +1,12 @@
 
 
 <% @course.each do |course| %>
-<br/><%= link_to "delete",course,method: :delete %>
+<br/>
+<% if current_user.admin? %>
+<%= link_to "delete",course,method: :delete %>
 <%= link_to "Edit", edit_course_path(course) %>
+<% end %>
+<%= link_to "Show", course_path(course) %>
 <%= course.category_id %>
 <%= course.coursename %>
 <%= course.coursetutor %>

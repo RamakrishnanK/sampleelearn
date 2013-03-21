@@ -1,19 +1,22 @@
 <h1>Course Update</h1>
-
+<div class="row">
+<div class="span6 offset3">
 <%= form_for(@course) do |f| %>
 <%= render "shared/errormsg", object: f.object %>
 <%= f.select :category_id, Category.find(:all).collect{|c| [c.category_name, c.id]}, :prompt => "Pick a Category" %>
 <%= f.label :coursename %>
-<%= f.text_field :coursename %><br/>
+<%= f.text_field :coursename %>
 <%= f.label :coursetutor %>
-<%= f.text_field :coursetutor %><br/>
+<%= f.text_field :coursetutor %>
 <%= f.label :coursedescription %>
-<%= f.text_area :coursedescription %><br/>
+<%= f.text_area :coursedescription %>
 <%= f.label :courseimage %>
-<%= f.file_field :courseimage %><br/>
+<%= f.file_field :courseimage %>
 <%= f.label :topics %>
-<%= f.text_field :topics %><br/>
+<%= f.text_field :topics %>
 <%= f.submit "Course Update",class: "btn btn-primary" %>
 <% end %>
+</div>
+</div>
 
 

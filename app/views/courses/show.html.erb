@@ -4,4 +4,7 @@
 <%= @course.topics %>
 
   Rating : <%= rating_for @course, "quality" %>
- 
+
+<%= link_to "Add reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course} %>
+
+<%= render :partial => 'comments/review', :locals => {:commentable => @course} %>

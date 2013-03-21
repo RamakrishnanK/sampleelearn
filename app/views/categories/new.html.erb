@@ -2,6 +2,7 @@
 <div class="row">
 <div class="span6 offset3">
 	<%= form_for(@category) do |f| %>
+	<%= render "shared/errormsg", object: f.object %>
 <%= f.label :category_name %>
 <%= f.text_field :category_name %><br/>
 <%= f.submit "Category Add",class: "btn btn-primary"%>
