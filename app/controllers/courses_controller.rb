@@ -10,6 +10,16 @@ class CoursesController < ApplicationController
    @category=Category.find(params[:id])
    @course = @category.courses.build(params[:course])
    @course.user_id = current_user.id
+   if (params[:course][:courseimage] != nil)
+    name = params[:course][:courseimage].original_filename
+    directory = "#{Rails.root}/public/uploads"
+    path = File.join(directory, name)
+    File.open(path, "wb") { |f| f.write(params[:course][:courseimage].read) }
+
+    @course.courseimage = name
+  end
+
+   # @course.uploaded_file = params[:course]
     #@course=Course.new(params[:course])
 
     if @course.save
@@ -23,29 +33,37 @@ end
 def show
  @course=Course.find(params[:id])
  @countCommentsPerPage = 5
-    @comments = @course.comments.paginate(page: params[:page], per_page: 5)
-    @count = @course.comments.count
-    @course = Course.find(params[:id])
+ @comments = @course.comments.paginate(page: params[:page], per_page: 5)
+ @count = @course.comments.count
+ @course = Course.find(params[:id])
+
 end
+
 def edit
  @course=Course.find(params[:id])
 end
 def update
   @course=Course.find(params[:id])
-    #@category=Category.find(params[:id])
-    #@course = @category.courses.build(params[:course])
-    #@category=(params[:id])
-  	#@course=Course.find(params[:id])
-    #@category=@course.Course.find(params[:Category_id])
-    if @course.update_attributes(params[:course])
-      flash[:success]="Updated Course details Successfully"
-      redirect_to @course
-    else
-     render 'edit'
-   end
+  if (params[:course][:courseimage] != nil)
+    name = params[:course][:courseimage].original_filename
+    File.delete("#{Rails.root}/public/uploads/" + @course.courseimage)
+    directory = "#{Rails.root}/public/uploads"
+    path = File.join(directory, name)
+    File.open(path, "wb") { |f| f.write(params[:course][:courseimage].read) }
+
+    params[:course][:courseimage] = params[:course][:courseimage].original_filename
+  else
+    params[:course][:courseimage] = @course.courseimage
+  end
+  if @course.update_attributes(params[:course])
+    flash[:success]="Updated Course details Successfully"
+    redirect_to @course
+  else
+   render 'edit'
  end
- def index
-   @course=Course.all
+end
+def index
+ @course=Course.all
      #searchValue = params[:keyword] 
 
    end
@@ -60,9 +78,14 @@ def update
       #@searchValue=params[:category_id]
        #@title = "Bikes"
       # if @course != ""
-         @course=Course.all(params[:category_id])
+      #@course=Course.find_by_category_id(1)
+      #if @course.present?
+        #@course
+      #else
+        @course=Course.all(params[:category_id])
+      #end
        #else
-        # @course=Course.all
+        # 
        #end
      end
      def destroy
@@ -71,15 +94,15 @@ def update
       flash[:success] = "Successfully destroyed course."
       redirect_to courses_url
     end
-     private
-def custom_method
-  authenticate_user!
+    private
+    def custom_method
+      authenticate_user!
 
-  if current_user.admin
-     return
-  else
+      if current_user.admin
+       return
+     else
      redirect_to root_url # or whatever
-  end
-end
    end
+ end
+end
 

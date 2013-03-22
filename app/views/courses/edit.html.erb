@@ -11,7 +11,7 @@
 <%= f.label :coursedescription %>
 <%= f.text_area :coursedescription %>
 <%= f.label :courseimage %>
-<%= f.file_field :courseimage %>
+<%= f.file_field :courseimage %><%= image_tag("/uploads/#{@course.courseimage}", :size => "100x100")%><br/>
 <%= f.label :topics %>
 <%= f.text_field :topics %>
 <%= f.submit "Course Update",class: "btn btn-primary" %>

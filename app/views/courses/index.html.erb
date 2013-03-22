@@ -4,12 +4,22 @@
 <br/>
 <% if current_user.admin? %>
 <%= link_to "delete",course,method: :delete %>
+
 <%= link_to "Edit", edit_course_path(course) %>
 <% end %>
 <%= link_to "Show", course_path(course) %>
-<%= course.category_id %>
+<% if course.courseimage ==nil %>
+
 <%= course.coursename %>
 <%= course.coursetutor %>
 <%= course.coursedescription %>
 <%= course.topics %><br/>
+<% else %>
+<%= image_tag("/uploads/#{course.courseimage}", :size => "100x100")%><br/>
+
+<%= course.coursename %>
+<%= course.coursetutor %>
+<%= course.coursedescription %>
+<%= course.topics %><br/>
+<% end %>
 <% end %>
